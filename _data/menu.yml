@@ -26,8 +26,7 @@ entries:
       
   - title: homelab
     post_list:
-      category: example2
-      limit: 2
+      category: homelab
       show_more: true
       show_more_text: See more posts...
       show_more_url: example2-archive.html
