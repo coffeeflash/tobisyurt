@@ -1,11 +1,11 @@
-title: tobi, having fun @home # name of the site
+title: tobi exploring, learning and having fun # name of the site
 author: Toubi van Kenoubi # name of site's author
 email: tobias.schneeberger@gmail.com # email of site's author
 url: https://tobisyurt.net # root address of the site
 baseurl: "" # subpath of the site, e.g. "/blog" (leave it blank "" if you're site shouldn't use a subpath)
 description: > # description of the site (multiple lines allowed)
-  A (nearly) no-CSS, fast, minimalist Jekyll theme.
-  Tobi having fun in is homelab...
+  Tobi having fun in is homelab... Started with a plain old desktop pc repurposed to a NAS with FreeNAS (today TrueNAS Core),
+   what got me motivated to do more and more in my homenetwork and today I consider it a hobby.
 permalink: /:slug.html
 
 favicon: "logo.png" # name+extension of favicon (which must be put on the root folder)

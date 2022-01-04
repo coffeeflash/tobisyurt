@@ -3,6 +3,19 @@ layout: page
 title: About
 ---
 
-This is an example page!
+I am `tobi`. I spent hours in fiddling around in my homelab, but couldn't share it with a lot of people. So i decided to make my notes publicly available. Eventually someone else gets motivated or has thoughts for my projects or even new ideas.
 
-It's very similar to a `post` layout, with the only difference that the publish date is not shown!
+## Table of contents
+- [Resume](#resume)
+- [Homelab](#homelab)
+
+
+## [Resume](#resume)
+
+To do ...
+
+## [Homelab](#homelab)
+### Milestones
+#### NAS
+#### Nextcloud as sole accessible webapp
+#### Reverse proxy, lots of jails
