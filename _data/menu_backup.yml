@@ -2,7 +2,7 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: all posts (in progress, some examples to show how it will look like)
+  - title: all posts
     post_list:
       limit: 5
       show_more: true
@@ -17,11 +17,16 @@ entries:
       show_more_text: See more posts...
       show_more_url: homelab-archive.html
 
-  - title: info
+  - title: rss
+    url: feed.xml
+
+  - title: another list
     entries:
-      - title: rss
-        url: feed.xml
-      - title: about
-        url: about
-      - title: theme from riggraz
-        url: http://jekyllthemes.org/themes/no-style-please/
+      - title: with subitems
+        entries:
+          - title: with subsubitems
+          - title: example page
+            url: about
+  - title: PRO TIP
+    entries:
+      - title: to edit this menu, edit _data/menu.yml file
