@@ -17,6 +17,14 @@ entries:
       show_more_text: See more posts...
       show_more_url: homelab-archive.html
 
+    - title: DIY
+      post_list:
+        category: DIY
+        limit: 3
+        show_more: true
+        show_more_text: See more posts...
+        show_more_url: diy-archive.html
+
   - title: info
     entries:
       - title: rss
