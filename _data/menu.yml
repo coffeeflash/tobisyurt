@@ -17,13 +17,13 @@ entries:
       show_more_text: See more posts...
       show_more_url: homelab-archive.html
 
-    - title: DIY
-      post_list:
-        category: DIY
-        limit: 3
-        show_more: true
-        show_more_text: See more posts...
-        show_more_url: diy-archive.html
+    # - title: DIY
+    #   post_list:
+    #     category: DIY
+    #     limit: 3
+    #     show_more: true
+    #     show_more_text: See more posts...
+    #     show_more_url: diy-archive.html
 
   - title: info
     entries:
@@ -31,5 +31,7 @@ entries:
         url: feed.xml
       - title: about
         url: about
+      - title: github
+        url: https://github.com/coffeeflash/tobisyurt
       - title: theme from riggraz
         url: http://jekyllthemes.org/themes/no-style-please/
