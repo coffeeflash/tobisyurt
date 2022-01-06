@@ -7,7 +7,14 @@ Inspired by [elly's site](http://tilde.town/~elly/), expressly created for [my p
 
 <img src="https://raw.githubusercontent.com/riggraz/no-style-please/master/_screenshots/featured-image.png" />
 
-## Features
+## Features (added by tobi)
+
+# Deploy (self-hosted)
+Added a simple deploy script, for a local deployment on your server with ssh and rsync. Convenient and super fast!
+Just make it executable `chmod -x deploy.sh` and run `./deploy.sh`.  
+
+
+## Features (original)
 
 * Fast (**1kb of CSS!** For more information on performance and more, see [Page Speed Insights report](https://raw.githubusercontent.com/riggraz/no-style-please/master/_screenshots/page-speed-insights-report.png) and [Lighthouse report](https://raw.githubusercontent.com/riggraz/no-style-please/master/_screenshots/lighthouse-report.png))
 * Light, dark and auto modes
@@ -120,4 +127,3 @@ To add a custom directory to your theme-gem, please edit the regexp in `no-style
 ## License
 
 The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-

@@ -21,7 +21,19 @@ I already had a NGINX Web Server configured as my Reverse Proxy. That is why i d
 
 I just summarize the steps necessary, because it can be different depending on th OS and i did it in a FreeBSD Jail, which is not the easiest way (had to build NGINX from scratch, because the default NGINX Web Server in the FreeBSD package repository misses some dependencies).
 
+* install / build necessary nginx modules:
+  * MODSECURITY3
+  * HTTP_IP2LOCATION (optional if you want to use the GeoLite2City/Country db's)
+* install [Libmodsecurity](https://github.com/SpiderLabs/ModSecurity){:target="_blank"}
+* get the [OWASP Coreroleset](https://coreruleset.org/){:target="_blank"} i recommend not to take the dev track.
+* activate it where ever you want and learn to handle false positives
+  * pretty awesome [guides](https://www.netnea.com/cms/nginx-modsecurity-tutorials/)
+  * python scripts to learn rules (still in development...) [github](https://github.com/coffeeflash/crs-learning)
+
 # Grafana Dashboard
+
+I like logs, but I love visualizations! I set up a grafana instance to monitor my reverse proxy's access logs before and added a new dashboard for the modsecurity messages in the error log. Maybe there will follow another post on grafana related stuff.
+
 [![Grafana Modsecurity Dashboard Overview](/assets/images/modsec_grafana.png)](/assets/images/modsec_grafana.png)
 
 [![Grafana Modsecurity Dashboard Detail1](/assets/images/modsec_grafana1.png)](/assets/images/modsec_grafana1.png)
