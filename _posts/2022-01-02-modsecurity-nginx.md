@@ -34,6 +34,8 @@ I just summarize the steps necessary, because it can be different depending on t
 
 I like logs, but I love visualizations! I set up a grafana instance to monitor my reverse proxy's access logs before and added a new dashboard for the modsecurity messages in the error log. Maybe there will follow another post on grafana related stuff.
 
+But if you are interested in the dashboard itself, i shared it [here](https://grafana.com/grafana/dashboards/15495){:target="_blank"}.
+
 [![Grafana Modsecurity Dashboard Overview](/assets/images/modsec_grafana.png)](/assets/images/modsec_grafana.png)
 
 [![Grafana Modsecurity Dashboard Detail1](/assets/images/modsec_grafana1.png)](/assets/images/modsec_grafana1.png)
