@@ -5,7 +5,7 @@ category: [homelab,FreeBSD]
 
 Recently I migrated my TrueNAS from bare-metal into a Proxmox VM with almost all SATA-COntroller passed through, but more about that in another post. Here I'd like to talk about TrueNAS. I am using TrueNAS since approximately 3 years and had a lot of fun with it and learned a lot. In the process of migrating, i was motivated to question some old setups, what I want to discuss here.
 
-# Backup Strategy
+# The Strategy
 
 I have some critical data, whereas data loss would be fatal and downtime most annoying. The rest of the data is just a lot of movies, tv-shows. If this data is not available for some days, it is not a big problem, but data loss would be no fun. The critical part is about 1 TB and the not so critical part about 22 TB. So i figured following setup to make it as cheap an reliable as possible.
 
