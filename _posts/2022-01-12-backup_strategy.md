@@ -14,6 +14,8 @@ I have some critical data, whereas data loss would be fatal and downtime most an
 ## Critical Data
 The critical data is in RAID 1 mode "Mirror"[^1]. Maybe I will upgrade that to RAID 5 in the near future. This would provide more performance and capacity. These RAID Levels serve me the right amount of "High Availability". If one drive fails I have time to replace it and everything keeps running. On top of that i make nightly replication on another disk in the same machine and on a external disk. I have two external disks which I rotate weekly. One is always attached and gets the newest replications and one is kept in my car as an off-site backup. My car is not in the same building, it is always parked a couple of 100 m away. So in case of a disaster in the building, it should be fine.
 
+The drives in the server are not encrypted. The probability to get robbed at home is low, but with the car we go to all sorts of locations, therefore the external drives need to be encrypted. I used the default of TrueNAS, which is AES-256-GCM.
+
 ## Common Data
 My second data category has no high availability requirements, but backups are necessary. I thought of two possible scenarios:
 
