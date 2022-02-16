@@ -15,11 +15,11 @@ In my homelab i have some apps under category 2. and 3., what lead me to tackle 
 
 # NGINX Reverse Proxy
 
-I already had a NGINX Web Server configured as my Reverse Proxy. That is why i decided to go with the new version 3 of modsecurity[^1] which also provides a NGINX-Connector. Previous versions were depended of the Apache Web Server, but luckily the major upgrade of version 3 made it standalone with several connectors to various Web Servers.
+I already had a NGINX web server configured as my reverse proxy. That is why i decided to go with the new version 3 of modsecurity[^1] which also provides a NGINX-Connector. Previous versions were depended of the Apache web server, but luckily the major upgrade of version 3 made it standalone with several connectors to various Web Servers.
 
 # ModSecurity
 
-I just summarize the steps necessary, because it can be different depending on th OS and i did it in a FreeBSD Jail, which is not the easiest way (had to build NGINX from scratch, because the default NGINX Web Server in the FreeBSD package repository misses some dependencies).
+I just summarize the steps necessary, because it can be different depending on th OS and i did it in a FreeBSD Jail, which is not the easiest way (had to build NGINX from scratch, because the default NGINX web server in the FreeBSD package repository misses some dependencies).
 
 * install / build necessary nginx modules:
   * MODSECURITY3
