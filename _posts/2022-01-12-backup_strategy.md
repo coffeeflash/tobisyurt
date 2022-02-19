@@ -3,7 +3,7 @@ layout: post
 category: [homelab,FreeBSD]
 ---
 
-Tester !!! Recently I migrated my TrueNAS from bare-metal into a Proxmox VM with almost all SATA-Controllers passed through, but more about that in another post. Here I'd like to talk about TrueNAS. I am using TrueNAS since approximately 3 years and had a lot of fun with it and learned a lot. In the process of migrating, i was motivated to question some old setups, what I want to discuss here.
+Recently I migrated my TrueNAS from bare-metal into a Proxmox VM with almost all SATA-Controllers passed through, but more about that in another post. Here I'd like to talk about TrueNAS. I am using TrueNAS since approximately 3 years and had a lot of fun with it and learned a lot. In the process of migrating, i was motivated to question some old setups, what I want to discuss here.
 
 # The Strategy
 
