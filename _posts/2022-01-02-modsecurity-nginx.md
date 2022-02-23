@@ -36,14 +36,9 @@ I like logs, but I love visualizations! I set up a grafana instance to monitor m
 
 But if you are interested in the dashboard itself, i shared it [here](https://grafana.com/grafana/dashboards/15495){:target="_blank"}.
 
-[![Grafana Modsecurity Dashboard Overview](/assets/images/modsec_grafana.png)](/assets/images/modsec_grafana.png)
+[![Grafana Modsecurity Dashboard Overview](/assets/images/modsec_grafana.jpg)](/assets/images/modsec_grafana.jpg)
 
-[![Grafana Modsecurity Dashboard Detail1](/assets/images/modsec_grafana1.png)](/assets/images/modsec_grafana1.png)
-
-[![Grafana Modsecurity Dashboard Detail2](/assets/images/modsec_grafana2.png){:.ioda}](/assets/images/modsec_grafana2.png)
-
-[![Grafana Modsecurity Dashboard  Detail3](/assets/images/modsec_grafana3.png){:.ioda}](/assets/images/modsec_grafana3.png)
-
+[![Grafana Modsecurity Dashboard Detail1](/assets/images/modsec_grafana1.jpg)](/assets/images/modsec_grafana1.jpg)
 
 
 ---
