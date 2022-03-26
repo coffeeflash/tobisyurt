@@ -3,11 +3,21 @@ layout: post
 category: [homelab,Docker]
 ---
 
-Why, and so on... (coming soon)
+I had Dockerfiles lying around at work- and home-servers and also on some laptops.
+So after while searching on different places I felt the urge to organize it. I was
+not comfy to put everything on [Docker Hub](https://hub.docker.com/), because
+I also wanted the possibility to put some quick and dirty images with hard coded 
+credentials and things I just don't want tu publish. To pay for a subscription to
+be allowed to also host private images ond Docker Hub was also not my thing.
+
+So I decided to put my Dockerfiles and what's needed to build them on my private git.
+Then make proper jenkins pipelines to build the images and finally push them to my
+registry (git and jenkins are not a part of this post).
 
 # The Registry
 
-The documentation is more than nice, see for yourself; https://docs.docker.com/registry/
+The documentation is more than nice, see for yourself; 
+[https://docs.docker.com/registry/](https://docs.docker.com/registry/)
 
 I started my registry with following docker-compose file:
 
