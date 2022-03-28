@@ -40,6 +40,47 @@ I started my registry with following docker-compose file:
         REGISTRY_HTTP_ADDR: 0.0.0.0:5000
         REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
 
+## Registry access for watchtower
+
+I use watchtower to label some container and get updated as soon as there is a new
+image push. But for that to work with private registries you have to get the
+credentials inside your container. Following my way doing it:
+
+* make a login in the registry on whatever environment you like with:
+  `docker login yourPrivateRegistry`
+* Then copy the generated `.docker/config.json` into a docker volume of your choice.
+If you have logged in more than one private registry, clean the config.json accordingly.
+* Then link the volume to watchtower.
+
+My docker-compose file for this (Caution, I also introduced the environment variable
+`DOCKER_CONFIG=/config`):
+
+```yaml
+version: '3'
+
+volumes:
+  tobisyurt_cred:
+
+services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - tobisyurt_cred:/config/
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+      - TZ=Europe/Zurich
+      - WATCHTOWER_POLL_INTERVAL=360
+      - DOCKER_CONFIG=/config
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+```
+
 # Nginx Reverse Proxy Authentication
 
 ## Basic auth
@@ -59,7 +100,7 @@ In the nginx configuration add:
     auth_basic_user_file /path/to/file/above/passwordfile;
     
 The rest of the configuration cou can take over from the registry recipes[^1].
-
+```
     events {
         worker_connections  1024;
     }
@@ -127,6 +168,7 @@ The rest of the configuration cou can take over from the registry recipes[^1].
 
 I got them from "let's encrypt"[^2] and I recommend doing the same. They also provide
 a certbot, so you will never have to renew them yourself...
+```
 
 ---
 {: data-content="footnotes"}
