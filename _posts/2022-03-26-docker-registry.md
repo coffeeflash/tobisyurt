@@ -14,9 +14,10 @@ So I decided to put my Dockerfiles and what's needed to build them on my private
 Then make proper jenkins pipelines to build the images and finally push them to my
 registry (git and jenkins are not a part of this post).
 
-I decided to use a simple setup instead of big stack of containers like for example
-harbor (see [https://goharbor.io/](https://goharbor.io/)). Just a simple registry from 
-docker itself and a simple stateless browser, which is only using the api and the login
+I decided to use a simple setup instead of big stacks of containers like for example
+harbor (see [https://goharbor.io/](https://goharbor.io/)). So I went with the registry from 
+docker itself. Unfortunately this is just an api without a nice web interface like docker hub.
+That is why I added simple stateless browser, which is only using the api and the login
 mechanism of the registry itself.
 
 # The Registry
