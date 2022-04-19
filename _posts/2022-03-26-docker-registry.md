@@ -17,7 +17,7 @@ registry (git and jenkins are not a part of this post).
 I decided to use a simple setup instead of big stacks of containers like for example
 harbor (see [https://goharbor.io/](https://goharbor.io/)). So I went with the registry from 
 docker itself. Unfortunately this is just an api without a nice web interface like docker hub.
-That is why I added simple stateless browser, which is only using the api and the login
+That is why I added a simple stateless browser, which is only using the api and the login
 mechanism of the registry itself.
 
 # The Registry
@@ -51,7 +51,7 @@ I enabled the option to use the api also for deleting tags with the variable; `R
 ## Registry Browser
 
 I found the [docker-registry-browser](https://github.com/klausmeyer/docker-registry-browser)
-on Github, which satisfies my needs. I enabled the delete option here too.
+on GitHub, which satisfies my needs. I enabled the delete option here too.
 
 The registry itself runs under the location `/v2`, therefore I decided to put the browser under the 
 root location `/`.
@@ -114,6 +114,13 @@ services:
       - TZ=Europe/Zurich
       - WATCHTOWER_POLL_INTERVAL=360
       - DOCKER_CONFIG=/config
+      - WATCHTOWER_NOTIFICATIONS=email
+      - WATCHTOWER_NOTIFICATION_EMAIL_FROM=...
+      - WATCHTOWER_NOTIFICATION_EMAIL_TO=...
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER=...
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT=...
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER=...
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD=...
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
 
