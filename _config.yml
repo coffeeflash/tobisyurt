@@ -25,3 +25,6 @@ sass:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+
+custom_js:
+  - comments

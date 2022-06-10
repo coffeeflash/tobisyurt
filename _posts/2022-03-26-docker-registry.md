@@ -1,12 +1,13 @@
 ---
 layout: post
 category: [homelab,Docker]
+custom_js: comments
 ---
 
 I had Dockerfiles lying around at work- and home-servers and also on some laptops.
 So after while searching on different places I felt the urge to organize it. I was
 not comfy to put everything on [Docker Hub](https://hub.docker.com/), because
-I also wanted the possibility to put some quick and dirty images with hard coded 
+I also wanted the possibility to put some quick and dirty images with hard coded
 credentials and things I just don't want tu publish. To pay for a subscription to
 be allowed to also host private images ond Docker Hub was also not my thing.
 
@@ -15,14 +16,14 @@ Then make proper jenkins pipelines to build the images and finally push them to 
 registry (git and jenkins are not a part of this post).
 
 I decided to use a simple setup instead of big stacks of containers like for example
-harbor (see [https://goharbor.io/](https://goharbor.io/)). So I went with the registry from 
+harbor (see [https://goharbor.io/](https://goharbor.io/)). So I went with the registry from
 docker itself. Unfortunately this is just an api without a nice web interface like docker hub.
 That is why I added a simple stateless browser, which is only using the api and the login
 mechanism of the registry itself.
 
 # The Registry
 
-The documentation is more than nice, see for yourself; 
+The documentation is more than nice, see for yourself;
 [https://docs.docker.com/registry/](https://docs.docker.com/registry/)
 
 I started my registry with following docker-compose file:
@@ -53,7 +54,7 @@ I enabled the option to use the api also for deleting tags with the variable; `R
 I found the [docker-registry-browser](https://github.com/klausmeyer/docker-registry-browser)
 on GitHub, which satisfies my needs. I enabled the delete option here too.
 
-The registry itself runs under the location `/v2`, therefore I decided to put the browser under the 
+The registry itself runs under the location `/v2`, therefore I decided to put the browser under the
 root location `/`.
 
 Following my docker-compose file for the registry browser:
@@ -143,7 +144,7 @@ In the nginx configuration add:
 
     auth_basic "Registry realm";
     auth_basic_user_file /path/to/file/above/passwordfile;
-    
+
 The rest of the configuration cou can take over from the registry recipes[^1].
 
 ## SSL Certificates
