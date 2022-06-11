@@ -4,16 +4,16 @@ $(function(){
   console.log("lalalal")
 
   $.ajax({
-    url: 'http://localhost:8083/heroes',
+    url: 'http://localhost:8080/api/comments?post=' + $('#comments-title').text(),
     type: 'GET',
     // data: {
-    //         id: dealId,
-    //         other: "blabla"
+    //         postTitle: $('.post-title').text()
     //       },
     success: function(r){
       // $("#loading-spinner").animate({opacity: '0'}, 500);
-      $('.comments').empty().append(r);
-      console.log(r.page.size)
+      $('.comments').empty();
+      $('.comments').append(r);
+      console.log(r)
     },
     error: function(){ console.log("upsss.....");}
   });
