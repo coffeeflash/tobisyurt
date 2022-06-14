@@ -48,20 +48,20 @@ $(function(){                                                             //on d
     // data: {
     //         postTitle: $('.post-title').text()
     //       },
-    success: async function(r){
+    success: async function(quiz){
       // $("#loading-spinner").animate({opacity: '0'}, 500);
       $('.comments').empty();
-      $('.comments').append(r);
+      $('.comments').append(quiz);
       //console.log(toHexString(r));
-      console.log(r)
-      console.log(new TextEncoder().encode(r))
-      console.log(toHexString(Array.from(r).map(letter => letter.charCodeAt(0))))
-      const validNonce = await searchHash(r)
+      console.log(quiz)
+      console.log(new TextEncoder().encode(quiz.content))
+      console.log(toHexString(Array.from(quiz.content).map(letter => letter.charCodeAt(0))))
+      const validNonce = await searchHash(quiz.content)
       console.log("VALID NONCE: " + validNonce)
 
       $.ajax({
         //url: 'http://localhost:8080/api/comments?post=' + $('#comments-title').text(),
-        url: 'http://localhost:8080/api/solution?nonce=' + validNonce,
+        url: 'http://localhost:8080/api/solution?nonce=' + validNonce + '&quizContent=' + quiz.content,
         type: 'POST',
         success: function(r){
           console.log("ok")
