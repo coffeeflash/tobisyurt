@@ -1,6 +1,10 @@
 
 const baseUrl = 'http://localhost:8080'
+let loading = false
 
+setUp()
+
+function setUp(){
   $.ajax({
     url: baseUrl + '/api/comments?source=' + $('#comments-title').text(),
     type: 'GET',
@@ -24,8 +28,8 @@ const baseUrl = 'http://localhost:8080'
       })
     },
     error: function(){ console.log("upsss.....");}
-  });
-
+  })
+}
 
 function toHexString(byteArr) {
   return byteArr.map((byte) => {
@@ -71,6 +75,7 @@ function addComment(){
   console.log("adding a comment started.")
   $('#addComment').empty().append(
     '<h1>Add your comment:</h1>'+
+      '<p style="color:rgb(128,128,128);font-size:2rem;" id="loading"></p>'+
     '<form onsubmit="sendComment()"'+
       '<label for="name">Name:</label><br>'+
       '<input id="name" name="name" value="your name"><br>'+
@@ -96,12 +101,13 @@ function sendComment(){
     //       },
     success: async function(quiz){
       // $("#loading-spinner").animate({opacity: '0'}, 500);
+      recursiveWait();
       console.log(quiz)
       console.log(new TextEncoder().encode(quiz.content))
       console.log(toHexString(Array.from(quiz.content).map(letter => letter.charCodeAt(0))))
       const validNonce = await searchHash(quiz.content)
       console.log("VALID NONCE: " + validNonce)
-
+      let that = this
       $.ajax({
         url: baseUrl + '/api/comment',
         //url: baseUrl + '/api/solution?nonce=' + validNonce + '&quizContent=' + quiz.content,
@@ -116,7 +122,9 @@ function sendComment(){
                 quizSolution: validNonce
               }),
         success: function(){
-          console.log("ok")
+          console.log("ok, loading all comments again...")
+          loading = false
+          setUp()
         },
         error: function(){ console.log("upsss..... 1");}
       });
@@ -124,4 +132,21 @@ function sendComment(){
 
     error: function(){ console.log("upsss..... 2");}
   });
+}
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+let loadicons = ['|','/','-','\\']
+let i = 0
+
+async function recursiveWait() {
+ let loadico = loadicons[i++%4]
+ $('#loading').empty().append(loadico + "    " + loadico + "    " + loadico)
+ loading = true
+ console.log("waiting...")
+ await delay(200)
+ if(loading) await recursiveWait()
+ else i = 0
 }
