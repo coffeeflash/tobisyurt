@@ -20,7 +20,7 @@ function setUp(){
       $('.comments').empty()
       comments.forEach(comment => {
         $('.comments').append(
-          '<h3>' + comment.user + 
+          '<h3>' + comment.user +
             '<span style="color:rgb(128,128,128);font-size:0.8rem;"> (' + new Date(comment.date).toLocaleString() + ')</span>'+
           '</h3>'+
           '<p>' + comment.comment + '</p>'
@@ -59,14 +59,14 @@ function checkNBytes(digestHex, numZeroBytes){
   return false;
 }
 
-async function searchHash(quizContent){
+async function searchHash(quizContent, securityLevel){
   let digestHex = ""
   let nonce = 0
     do{
       nonce++
 	    let nonceAndMsg = new TextEncoder().encode(nonce + quizContent)
       digestHex = await recursiveHash(nonceAndMsg);
-    }while (checkNBytes(digestHex, 2))
+    }while (checkNBytes(digestHex, securityLevel))
     console.log("VALID HASH: " + digestHex)
     return nonce
 }
@@ -105,13 +105,11 @@ function sendComment(){
       console.log(quiz)
       console.log(new TextEncoder().encode(quiz.content))
       console.log(toHexString(Array.from(quiz.content).map(letter => letter.charCodeAt(0))))
-      const validNonce = await searchHash(quiz.content)
+      const validNonce = await searchHash(quiz.content, quiz.securityLevel)
       console.log("VALID NONCE: " + validNonce)
       let that = this
       $.ajax({
         url: baseUrl + '/api/comment',
-        //url: baseUrl + '/api/solution?nonce=' + validNonce + '&quizContent=' + quiz.content,
-        //dataType: "json",
         contentType: "application/json",
         type: 'POST',
         data: JSON.stringify({
