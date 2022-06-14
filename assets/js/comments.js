@@ -1,4 +1,32 @@
 
+const baseUrl = 'http://localhost:8080'
+
+  $.ajax({
+    url: baseUrl + '/api/comments?source=' + $('#comments-title').text(),
+    type: 'GET',
+    success: function(comments){
+      $('#comments-section').empty().append(
+        '<h2>Comments - Section</h2>'+
+        '<div class="comments"></div>'+
+        '<div id="addComment">'+
+        '  <button type="button" onclick="addComment()"> Add a comment </button>'+
+        '</div>'
+      )
+
+      $('.comments').empty()
+      comments.forEach(comment => {
+        $('.comments').append(
+          '<h3>' + comment.user + 
+            '<span style="color:rgb(128,128,128);font-size:0.8rem;"> (' + new Date(comment.date).toLocaleString() + ')</span>'+
+          '</h3>'+
+          '<p>' + comment.comment + '</p>'
+        )
+      })
+    },
+    error: function(){ console.log("upsss.....");}
+  });
+
+
 function toHexString(byteArr) {
   return byteArr.map((byte) => {
     if (byte < 0) {
@@ -39,20 +67,35 @@ async function searchHash(quizContent){
     return nonce
 }
 
-$(function(){                                                             //on document ready
+function addComment(){
+  console.log("adding a comment started.")
+  $('#addComment').empty().append(
+    '<h1>Add your comment:</h1>'+
+    '<form onsubmit="sendComment()"'+
+      '<label for="name">Name:</label><br>'+
+      '<input id="name" name="name" value="your name"><br>'+
+      '<label for="text-comment">Comment:</label><br>'+
+      '<textarea id="text-comment" name="text-comment" rows="4" cols="50">'+
+      ' Please, put your comment here.'+
+      '</textarea><br><br>'+
+      '<input type="submit" value="Submit">'+
+    '</form>'
+  )
+  $('form').submit(function(event){
+    event.preventDefault();
+  });
+}
 
-  $.ajax({
+function sendComment(){
+    $.ajax({
     //url: 'http://localhost:8080/api/comments?post=' + $('#comments-title').text(),
-    url: 'http://localhost:8080/api/quiz',
+    url: baseUrl + '/api/quiz',
     type: 'GET',
     // data: {
     //         postTitle: $('.post-title').text()
     //       },
     success: async function(quiz){
       // $("#loading-spinner").animate({opacity: '0'}, 500);
-      $('.comments').empty();
-      $('.comments').append(quiz);
-      //console.log(toHexString(r));
       console.log(quiz)
       console.log(new TextEncoder().encode(quiz.content))
       console.log(toHexString(Array.from(quiz.content).map(letter => letter.charCodeAt(0))))
@@ -60,90 +103,25 @@ $(function(){                                                             //on d
       console.log("VALID NONCE: " + validNonce)
 
       $.ajax({
-        //url: 'http://localhost:8080/api/comments?post=' + $('#comments-title').text(),
-        url: 'http://localhost:8080/api/solution?nonce=' + validNonce + '&quizContent=' + quiz.content,
+        url: baseUrl + '/api/comment',
+        //url: baseUrl + '/api/solution?nonce=' + validNonce + '&quizContent=' + quiz.content,
+        //dataType: "json",
+        contentType: "application/json",
         type: 'POST',
-        success: function(r){
+        data: JSON.stringify({
+                source: $('#comments-title').text(),
+                user: $('#name').val(),
+                comment: $('#text-comment').val(),
+                quizId: quiz.content,
+                quizSolution: validNonce
+              }),
+        success: function(){
           console.log("ok")
         },
-        error: function(){ console.log("upsss.....");}
+        error: function(){ console.log("upsss..... 1");}
       });
     },
-    error: function(){ console.log("upsss.....");}
+
+    error: function(){ console.log("upsss..... 2");}
   });
-
-
-
-	// Open/close details of a deal
-	$('.row h4').click(function(){
-		var $deal = $(this).parent();
-		if ($deal.hasClass('active')) {
-			// close details
-			$deal.removeClass('active');
-
-			$deal.find('.deal-details').slideUp();
-		} else {
-			// show details
-			$deal.addClass('active');
-			var dealId = $deal.attr('id').replace('deal-', '');
-			console.log("Deal " + dealId + " has been clicked.");
-
-
-			$.ajax({
-				url: 'ajax.php',
-				type: 'POST',
-				data: {
-								id: dealId,
-								other: "blabla"
-							},
-				success: function(data){
-					// $("#loading-spinner").animate({opacity: '0'}, 500);
-					$('.deal-details').empty().append(data);
-
-
-				},
-				error: function(){ console.log("upsss.....");}
-			});
-
-			$deal.find('.deal-details').slideDown();
-		}
-	});
-
-
-
-	//FOLLLOWING ENABLES THE PATTERN-ATTRIBUTE ON TEXTAREAS
-	var errorMessage = "Please match the requested format.";
-
-	    $( this ).find( "textarea" ).on( "input change propertychange", function() {
-
-	        var pattern = $( this ).attr( "pattern" );
-
-	        if(typeof pattern !== typeof undefined && pattern !== false)
-	        {
-	            var patternRegex = new RegExp( "^" + pattern.replace(/^\^|\$$/g, '') + "$", "g" );
-
-	            hasError = !$( this ).val().match( patternRegex );
-
-	            if ( typeof this.setCustomValidity === "function")
-	            {
-	                this.setCustomValidity( hasError ? errorMessage : "" );
-	            }
-	            else
-	            {
-	                $( this ).toggleClass( "error", !!hasError );
-	                $( this ).toggleClass( "ok", !hasError );
-
-	                if ( hasError )
-	                {
-	                    $( this ).attr( "title", errorMessage );
-	                }
-	                else
-	                {
-	                    $( this ).removeAttr( "title" );
-	                }
-	            }
-	        }
-
-	    });
-
-});
+}
