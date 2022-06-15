@@ -1,6 +1,6 @@
 ---
 layout: post
-category: [homelab,Spring Boot, HashCash, Blog]
+category: [homelab, Spring Boot, HashCash, Blog]
 ---
 
 # Problem
@@ -48,6 +48,11 @@ The client provides following in his request-body:
 * identifier to match the comment to the blog-post. (referer [in header] + title of the blog post)
 * a username, the comment itself.
 
+## Further Improvements
+
+* reply function, should appear underneath a comment.
+* fine tune quiz complexity (bit-wise instead byte-wise)
+* ip blocking
 ---
 {: data-content="footnotes"}
 
