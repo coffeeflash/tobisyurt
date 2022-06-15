@@ -71,24 +71,35 @@ async function searchHash(quizContent, securityLevel){
     return nonce
 }
 
+function scrollDown(){
+  $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+}
+
 function addComment(){
   console.log("adding a comment started.")
+  $('#addComment').css("opacity", 0)
   $('#addComment').empty().append(
     '<h1>Add your comment:</h1>'+
       '<p style="color:rgb(128,128,128);font-size:2rem;" id="loading"></p>'+
     '<form onsubmit="sendComment()"'+
       '<label for="name">Name:</label><br>'+
-      '<input id="name" name="name" value="your name"><br>'+
+      '<input id="name" name="name" placeholder="your name"><br>'+
       '<label for="text-comment">Comment:</label><br>'+
-      '<textarea id="text-comment" name="text-comment" rows="4" cols="50">'+
-      ' Please, put your comment here.'+
+      '<textarea id="text-comment" name="text-comment" placeholder="Write something..." rows="4" cols="50">'+
       '</textarea><br><br>'+
       '<input type="submit" value="Submit">'+
     '</form>'
   )
+  $('#addComment').animate({
+    // width: "70%",
+    opacity: 1,
+  }, 1000 )
+
+  scrollDown()
+
   $('form').submit(function(event){
-    event.preventDefault();
-  });
+    event.preventDefault()
+  })
 }
 
 function sendComment(){
@@ -100,14 +111,18 @@ function sendComment(){
     //         postTitle: $('.post-title').text()
     //       },
     success: async function(quiz){
-      // $("#loading-spinner").animate({opacity: '0'}, 500);
-      recursiveWait();
-      console.log(quiz)
-      console.log(new TextEncoder().encode(quiz.content))
-      console.log(toHexString(Array.from(quiz.content).map(letter => letter.charCodeAt(0))))
-      const validNonce = await searchHash(quiz.content, quiz.securityLevel)
-      console.log("VALID NONCE: " + validNonce)
-      let that = this
+      recursiveWait(); // only loading animation...
+      console.log("Quizes to solve...")
+      // quiz.contents.forEach((content) => {
+      //   console.log(new TextEncoder().encode(content))
+      //   console.log(toHexString(Array.from(content).map(letter => letter.charCodeAt(0))))
+      // });
+      let validNonces = []
+      for (var i = 0; i < quiz.contents.length; i++) {
+        let validNonce = await searchHash(quiz.contents[i], quiz.securityLevel)
+        validNonces.push(validNonce)
+      }
+      console.log("VALID NONCES: " + validNonces)
       $.ajax({
         url: baseUrl + '/api/comment',
         contentType: "application/json",
@@ -116,13 +131,15 @@ function sendComment(){
                 source: $('#comments-title').text(),
                 user: $('#name').val(),
                 comment: $('#text-comment').val(),
-                quizId: quiz.content,
-                quizSolution: validNonce
+                quizId: quiz.contents[0],
+                quizSolutions: validNonces
               }),
         success: function(){
           console.log("ok, loading all comments again...")
+          // TODO only load last comment... with an animation
           loading = false
           setUp()
+
         },
         error: function(){ console.log("upsss..... 1");}
       });
@@ -143,7 +160,7 @@ async function recursiveWait() {
  let loadico = loadicons[i++%4]
  $('#loading').empty().append(loadico + "    " + loadico + "    " + loadico)
  loading = true
- console.log("waiting...")
+ // console.log("waiting...")
  await delay(200)
  if(loading) await recursiveWait()
  else i = 0
