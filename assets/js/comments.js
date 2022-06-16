@@ -1,10 +1,10 @@
-let origin = location.origin
-console.log("ORIGIN: " + origin)
+// to differ dev / prod env
+const baseUrl = location.origin.includes("4000") ? 'http://localhost:8080' : location.origin
 
-const baseUrl = 'http://localhost:8080'
 let loading = false
 let solvedQuizes = 0
 let numToSolve = 0
+
 setUp()
 
 function setUp(){
@@ -104,7 +104,6 @@ function addComment(){
 }
 
 async function showError(errorText){
-  solvedQUizes = 0
   stopWait()
   scrollDown()
   $('#err').empty().append(errorText)
@@ -148,7 +147,12 @@ function sendComment(){
                 quizId: quiz.contents[0],
                 quizSolutions: validNonces
               }),
-        success: async function(){
+        success: async function(message){
+          console.log("message: " + message)
+          if(message != "ok"){
+            showError(message)
+            return
+          }
           console.log("ok, loading all comments again...")
           // TODO only load last comment... with an animation
           await delay(1000)
