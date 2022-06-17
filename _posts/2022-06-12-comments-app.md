@@ -3,13 +3,19 @@ layout: post
 category: [homelab, Spring Boot, HashCash, Blog]
 ---
 
-# Problem
+I started this blog with this nice Jekyll-Theme and wanted to host it myself rather than hosting it on github pages.
+But what I missed so far is a comments section. I initially searched for already implemented solutions and found following:
 
+* Paid comments services like Disqus[^1]
+* Some projects with comments over github-issues
+* Some open-source apps. But unfortunately, they weren't maintained anymore and I was not comfortable with the technology they used.
 
+The first two variants i didn't like because it costs money and / or I don't own the data.So I thought just do it yourself... and if
+so do it exactly as you like and do not try to rebuild something. And last but not least make it fun to build and use!
 
 ## Requirements
 
-Before I started or a little after the start I noted down some requirements:
+Before I started or a little after I wrote down some requirements:
 
 1. The user should not have to register somewhere. Not on the blog-website itself, neither on external services like google, facebook, github, etc.
 2. The service should has an easy api, which can be integrated with some simple ajax requests. The app should be easily deployable.
@@ -31,7 +37,7 @@ First ideas to cover these requirements:
    2. DDOS (and DOS): to post a comment, one has to solve a hash puzzle, which needs a couple of seconds to solve (depends on the client device, which could also be a little unfair...).
    3. Covered by Spring Boot and proper implementation...
 
-## Implementation-Notes
+## Some Details
 
 ### `GET /api/comments`
 ### `GET /api/quiz`
@@ -56,5 +62,4 @@ The client provides following in his request-body:
 ---
 {: data-content="footnotes"}
 
-[^1]: [https://docs.docker.com/registry/recipes/nginx/](https://docs.docker.com/registry/recipes/nginx/){:target="_blank"}
-[^2]: [https://letsencrypt.org/](https://letsencrypt.org/){:target="_blank"}
+[^1]: [https://disqus.com/](https://disqus.com/){:target="_blank"}
