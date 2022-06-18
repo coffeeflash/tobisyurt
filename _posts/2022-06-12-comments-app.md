@@ -42,8 +42,10 @@ First ideas to cover these requirements:
 ### `GET /api/comments`
 ### `GET /api/quiz`
 
-The comments-service provides a random quiz string with a certain security level (# of leading bytes to be 0), which the client has to hash in a certain way.
+The comments-service provides a certain number if random quiz strings with a certain security level (# of leading bytes to be 0), which the client has to hash in exactly that way.
 ~~As an alternative to give the client an id of the quiz, map the quiz to the referrer.~~ --> not a good way, if users come from the same ip-address...
+
+> a random quiz string looks like: ...
 
 The quiz gets stored in memory for a certain amount of time (e.g. 30 seconds), depending on the complexity of the hash puzzle. The storage key is the quiz string.
 
