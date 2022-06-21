@@ -1,6 +1,7 @@
 ---
 layout: post
 category: [homelab, Spring Boot, HashCash, Blog]
+custom_js: comments
 ---
 
 I started this blog with this nice Jekyll-Theme and wanted to host it myself rather than hosting it on github pages.
@@ -10,8 +11,21 @@ But what I missed so far is a comments section. I initially searched for already
 * Some projects with comments over github-issues
 * Some open-source apps. But unfortunately, they weren't maintained anymore and I was not comfortable with the technology they used.
 
-The first two variants i didn't like because it costs money and / or I don't own the data.So I thought just do it yourself... and if
-so do it exactly as you like and do not try to rebuild something. And last but not least make it fun to build and use!
+The first two variants I didn't like, because it costs money and / or I don't own the data.So I thought just do it yourself... and if
+so do it exactly as you like and do not try to rebuild something. And last but not least make it fun to build and use
+
+## Preview
+
+This app will provide an API and an exemplary integration to provide a comments section to a simple static website. I developed it
+for two jekyll blogs, but it is easily integrated in any blog.
+
+The cool thing about this app is, that users do not need to register to any services. They can just post comments. For
+security reasons I implemented some protection in form of hash quizes (similar to the proof of work concept with bitcoin)
+and simple ip blocking on certain condtions. More on that later ...
+
+Here a little preview, but of course I invite you to comment this very blog post down below and test it yourself.
+
+<img src="/assets/images/comments-preview.GIF" width="100%" height="100%"/>
 
 ## Requirements
 
@@ -40,27 +54,57 @@ First ideas to cover these requirements:
 ## Some Details
 
 ### `GET /api/comments`
+
+With this call a client (e.g. a blog post) gets comments. It needs two things to identify the comments.
+
+1. The `referer` needs to be declared in the request header (not default in Postamn, if one is testing the api...)
+2. The `source` as a request parameter. For example the title of a blog post.
+
 ### `GET /api/quiz`
 
-The comments-service provides a certain number if random quiz strings with a certain security level (# of leading bytes to be 0), which the client has to hash in exactly that way.
+The comments-service provides a certain number of random quiz strings with a certain security level (# of leading bytes to be 0), which the client has to hash in exactly that way.
 ~~As an alternative to give the client an id of the quiz, map the quiz to the referrer.~~ --> not a good way, if users come from the same ip-address...
 
 > a random quiz string looks like: OfMNU4sZ80CNMbctZU2t0sMLIccAkrUh
 
 The quiz gets stored in memory for a certain amount of time (e.g. 30 seconds), depending on the complexity of the hash puzzle. The storage key is the quiz string.
 
-### `GET /api/comment`
+### `POST /api/comment`
 
 The client provides following in his request-body:
-* quiz-id (aka storage key for the service to find it in the memory) and a solution (calculated nonce)
+* quiz-id (aka storage key for the service to find it in the memory) and a solution (calculated nonce's)
 * identifier to match the comment to the blog-post. (referer [in header] + title of the blog post)
-* a username, the comment itself.
+* a username and finally the comment itself.
+
+### Configuration
+
+Following environment variables can be set to fit your needs the best as possible:
+
+```yaml
+environment:
+  IP_BLOCK_TIME: 900
+  QUIZ_COUNT: 5
+  QUIZ_VALIDITY_SECONDS: 120
+  QUIZ_COMPLEXITY: 2
+  SPRING_DATA_MONGODB_HOST: mongo
+  SPRING_DATA_MONGODB_DATABASE: comments
+  SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE: admin
+  SPRING_DATA_MONGODB_USERNAME: root
+  SPRING_DATA_MONGODB_PASSWORD: pleaseChangeMe
+```
+
+The `QUIZ_COMPLEXITY` is the number of zero bytes needed to solve the quiz. I strongly recommend to leave it 2. 3 takes
+much longer in this single threaded client scenario. If you want to make it a bit harder, just increase the `QUIZ_COUNT`.
+If you increase `QUIZ_COMPLEXITY` or/and `QUIZ_COUNT`, you should also test if the time suffices on your target client
+devices...
+
 
 ## Further Improvements
 
-* reply function, should appear underneath a comment.
-* fine tune quiz complexity (bit-wise instead byte-wise)
-* ip blocking
+* reply function, should appear underneath a comment. Only reply on comment, not further nesting...
+* ~~fine tune quiz complexity (bit-wise instead byte-wise)~~ --> solved with multiple quizes.
+
+
 ---
 {: data-content="footnotes"}
 
