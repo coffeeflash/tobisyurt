@@ -17,6 +17,22 @@ entries:
       show_more_text: See more posts...
       show_more_url: homelab-archive.html
 
+  - title: docker
+    post_list:
+      category: docker
+      limit: 3
+      show_more: true
+      show_more_text: See more posts...
+      show_more_url: docker-archive.html
+
+  - title: security
+    post_list:
+      category: security
+      limit: 3
+      show_more: true
+      show_more_text: See more posts...
+      show_more_url: security-archive.html
+
     # - title: DIY
     #   post_list:
     #     category: DIY

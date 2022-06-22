@@ -1,6 +1,6 @@
 ---
 layout: post
-category: [homelab, Spring Boot, HashCash, Blog]
+category: [homelab, Spring Boot, HashCash, Blog, docker, security]
 custom_js: comments
 ---
 
@@ -23,11 +23,11 @@ The cool thing about this app is, that users do not need to register to any serv
 security reasons I implemented some protection in form of hash quizes (similar to the proof of work concept with bitcoin)
 and simple ip blocking on certain condtions. More on that later ...
 
-You can get the latest image from docker-hub: [https://hub.docker.com/r/toubivankenoubi/comments](https://hub.docker.com/r/toubivankenoubi/comments){:target="_blank"}
+You can get the latest image from docker-hub: [https://hub.docker.com/r/toubivankenoubi/comments](https://hub.docker.com/r/toubivankenoubi/comments)
 
 Here a little preview, but of course I invite you to comment this very blog post down below and test it yourself.
 
-<img src="/assets/images/comments-preview.GIF" width="100%" height="100%"/>
+[![Comments App Example Integration](/assets/images/comments-preview.GIF)](/assets/images/comments-preview.GIF)
 
 ## Requirements
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: [homelab,Docker]
+category: [homelab,docker]
 custom_js: comments
 ---
 
