@@ -23,11 +23,19 @@ function setUp(){
       $('.comments').empty()
       comments.forEach(comment => {
         $('.comments').append(
-          '<h3 style="margin-top: 1rem;">' + comment.user +
+          '<h3>' + comment.user +
             '<span style="color:rgb(128,128,128);font-size:0.8rem;"> (' + new Date(comment.date).toLocaleString() + ')</span>'+
           '</h3>'+
           '<p>' + comment.comment + '</p>'
         )
+        if ( comment.reply ){
+          $('.comments').append(
+            '<p style="margin-left: 2rem;"><strong>' + comment.admin +
+              '</strong><span style="color:rgb(128,128,128);font-size:0.8rem;"> (' + new Date(comment.replyDate).toLocaleString() + ')</span>'+
+            '</p>'+
+            '<p style="margin-left: 2rem;">' + comment.reply + '</p>')
+        }
+
       })
     },
     error: function(){ console.log("upsss.....");}
