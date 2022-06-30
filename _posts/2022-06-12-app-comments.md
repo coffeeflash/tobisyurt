@@ -19,7 +19,7 @@ so do it exactly as you like and do not try to rebuild something. And last but n
 I will make a little serie out o fit, if interested checkout following as well:
 
 * [comments-app -> proof-of-work]({% post_url 2022-06-23-proof-of-work %})
-* [comments-app -> reply-feature]({% post_url 2022-07-10-reply-feature %})
+* to come soon: "comments-app -> reply-and-admin-feature"
 
 ## Preview
 
