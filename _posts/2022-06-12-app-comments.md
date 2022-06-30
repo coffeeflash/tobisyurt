@@ -16,6 +16,11 @@ But what I missed so far is a comments section. I initially searched for already
 The first two variants I didn't like, because it costs money and / or I don't own the data.So I thought just do it yourself... and if
 so do it exactly as you like and do not try to rebuild something. And last but not least make it fun to build and use
 
+I will make a little serie out o fit, if interested checkout following as well:
+
+* [comments-app -> proof-of-work]({% post_url 2022-06-23-proof-of-work %})
+* [comments-app -> reply-feature]({% post_url 2022-07-10-reply-feature %})
+
 ## Preview
 
 This app will provide an API and an exemplary integration to provide a comments section to a simple static website. I developed it
@@ -90,11 +95,14 @@ environment:
   QUIZ_COUNT: 5
   QUIZ_VALIDITY_SECONDS: 120
   QUIZ_COMPLEXITY: 2
+  ADMIN_NAME: the_bloggers_name
   SPRING_DATA_MONGODB_HOST: mongo
   SPRING_DATA_MONGODB_DATABASE: comments
   SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE: admin
   SPRING_DATA_MONGODB_USERNAME: root
   SPRING_DATA_MONGODB_PASSWORD: pleaseChangeMe
+  SPRING_SECURITY_USER_NAME: user
+  SPRING_SECURITY_USER_PASSWORD: PleaseChangeMe
 ```
 
 The `QUIZ_COMPLEXITY` is the number of zero bytes needed to solve the quiz. I strongly recommend to leave it 2. 3 takes
@@ -102,6 +110,8 @@ much longer in this single threaded client scenario. If you want to make it a bi
 If you increase `QUIZ_COMPLEXITY` or/and `QUIZ_COUNT`, you should also test if the time suffices on your target client
 devices...
 
+`PRING_SECURITY_USER_NAME` and `SPRING_SECURITY_USER_PASSWORD` are for the http basic authentication,
+whereas `ADMIN_NAME` is just the blogger's name, which can be shown with the reply text.
 
 ## Further Improvements
 
