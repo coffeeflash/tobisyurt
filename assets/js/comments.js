@@ -1,5 +1,5 @@
 // to differ dev / prod env
-const baseUrl = location.origin.includes("4000") ? 'http://localhost:8080/comments' : location.origin + '/comments'
+const baseUrl = (location.origin.includes("4000") ? 'http://localhost:8080' : location.origin) + '/comments'
 
 let loading = false
 let solvedQuizes = 0
