@@ -12,6 +12,7 @@ function setUp(){
     url: baseUrl + '/api/comments?source=' + $('#comment-title').text(),
     type: 'GET',
     success: function(comments){
+      console.log("BASE URL " + baseUrl)
       $('#comment-section').empty().append(
         '<h2>Comment - Section</h2>'+
         '<div class="comments"></div>'+
