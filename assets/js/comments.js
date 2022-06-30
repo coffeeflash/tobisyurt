@@ -23,7 +23,7 @@ function setUp(){
       $('.comments').empty()
       comments.forEach(comment => {
         $('.comments').append(
-          '<h3>' + comment.user +
+          '<h3 style="margin-top: 1rem;">' + comment.user +
             '<span style="color:rgb(128,128,128);font-size:0.8rem;"> (' + new Date(comment.date).toLocaleString() + ')</span>'+
           '</h3>'+
           '<p>' + comment.comment + '</p>'

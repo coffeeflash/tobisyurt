@@ -4,6 +4,8 @@ category: [homelab, Spring Boot, HashCash, Blog, docker, security]
 custom_js: comments
 ---
 
+[![Comments App Example Integration](/assets/images/logo.svg){: width="200" }](/assets/images/logo.svg)
+
 I started this blog with this nice Jekyll-Theme and wanted to host it myself rather than hosting it on github pages.
 But what I missed so far is a comments section. I initially searched for already implemented solutions and found following:
 
