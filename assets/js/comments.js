@@ -9,7 +9,7 @@ setUp()
 
 function setUp(){
   $.ajax({
-    url: baseUrl + '/api/comments?source=' + $('#comment-title').text(),
+    url: baseUrl + '/api/comments?source=' + document.URL,
     type: 'GET',
     success: function(comments){
       $('#comment-section').empty().append(
@@ -153,7 +153,8 @@ function sendComment(){
         contentType: "application/json",
         type: 'POST',
         data: JSON.stringify({
-                source: $('#comment-title').text(),
+                sourceTitle: $('#comment-title').text(),
+                source: document.URL,
                 user: $('#name').val(),
                 comment: $('#text-comment').val(),
                 quizId: quiz.contents[0],
