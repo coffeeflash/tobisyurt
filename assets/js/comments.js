@@ -23,17 +23,16 @@ function setUp(){
       $('.comments').empty()
       comments.forEach(comment => {
         $('.comments').append(
-          '<h3>' + comment.user +
-            '<span style="color:rgb(128,128,128);font-size:0.8rem;"> (' + new Date(comment.date).toLocaleString() + ')</span>'+
+          '<div class="emphasize"><h3 style="margin: 0;">' + comment.user +
+            '<span style="color:gray;font-size:0.8rem;"> (' + new Date(comment.date).toLocaleString() + ')</span>'+
           '</h3>'+
-          '<p>' + comment.comment + '</p>'
+          '<p style="margin:0;">' + comment.comment + '</p></div>'
         )
         if ( comment.reply ){
           $('.comments').append(
-            '<p style="margin-left: 2rem;"><strong>' + comment.admin +
-              '</strong><span style="color:rgb(128,128,128);font-size:0.8rem;"> (' + new Date(comment.replyDate).toLocaleString() + ')</span>'+
-            '</p>'+
-            '<p style="margin-left: 2rem;">' + comment.reply + '</p>')
+            '<div class="emphasize admin"><h3 style="margin: 0;">' + comment.admin +
+              '<span style="color:rgb(128,128,128);font-size:0.8rem;"> (' + new Date(comment.replyDate).toLocaleString() + ')</span></h3>'+
+            '<p  style="margin:0;">' + comment.reply + '</p></div>')
         }
 
       })
@@ -91,6 +90,8 @@ function addComment(){
   $('#addComment').css("opacity", 0)
   $('#addComment').empty().append(
     '<h1>Add your comment:</h1>'+
+      '<p>No subscription to any service needed! Instead your device has to solve '+
+      'some hash quizes to successfully submit a comment.</p>'+
       '<p style="color:rgb(128,128,128);" id="loading"></p>'+
     '<form onsubmit="sendComment()"'+
       '<label for="name">Name:</label><br>'+

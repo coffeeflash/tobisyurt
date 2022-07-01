@@ -18,7 +18,8 @@ so do it exactly as you like and do not try to rebuild something. And last but n
 
 I will make a little serie out o fit, if interested checkout following as well:
 
-* [comments-app -> proof-of-work]({% post_url 2022-06-23-proof-of-work %})
+* [Part 1, Comments App: Overview]({% post_url 2022-06-12-part-1,-comments-app:-overview %})
+* [Part 2, Comments App: Proof of Work]({% post_url 2022-06-23-part-2,-comments-app:-proof-of-work %})
 * to come soon: "comments-app -> reply-and-admin-feature"
 
 ## Preview

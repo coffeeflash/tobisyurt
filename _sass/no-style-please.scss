@@ -70,6 +70,8 @@ table, th, td {
 }
 
 code {
+  padding: 0 0.3rem 0.1rem 0.3rem; 
+  border-radius: 5px;
   color: white;
   background: black;
 }
@@ -82,6 +84,7 @@ div.highlighter-rouge code {
 }
 
 blockquote {
+  border-radius: 5px;
   font-style: italic;
   border: thin solid black;
   padding: 1rem;
@@ -93,4 +96,19 @@ img {
   max-width: 100%;
   display: block;
   margin: 0 auto;
+  border-radius: 5px;
+}
+
+.emphasize {
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+  padding: 0.5rem;
+  background-color: lightgray;
+  color: black;
+  border-radius: 5px;
+}
+
+.admin {
+  color: #FF4500;
+  margin-left: 2rem;
 }

@@ -4,7 +4,7 @@ category: [HashCash, security]
 custom_js: comments
 ---
 
-This is a continuation of an earlier post, see [comments-app]({% post_url 2022-06-12-app-comments %}).
+This is a continuation of an earlier post, see [comments-app]({% post_url 2022-06-12-part-1,-comments-app:-overview %}).
 
 ## Proof of work
 

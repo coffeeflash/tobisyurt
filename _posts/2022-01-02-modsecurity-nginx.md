@@ -1,6 +1,7 @@
 ---
 layout: post
 category: [homelab,security,FreeBSD]
+custom_js: comments
 ---
 
 At work i had the the task to prepare a low cost production environment for a project in Kenya. It also required a WAF (Web Application Firewall), just as a precaution and to be able to react as fast as possible to the newest vulnerabilities in our technology stack. We decided to go for mod_security 2 on a classic Apache reverse proxy.
