@@ -9,8 +9,8 @@ This is a continuation of an earlier post, see [comments-app]({% post_url 2022-0
 ## Proof of work
 
 The proof of work concept is actually old. It was used to prevent DOS / DDOS Attacks on different Protocols and Services.
-With the bitcoin it becomes popular again. I don't want to get into if bitcoin is good or bad, but it certainly is interesting from
-a technical point of view. The bitcoin involves many more interesting things than the proof of concept, like authenticated datastructures like the Merkle Tree, Trusted Timestamping, etc.
+With the bitcoin it becomes popular again. I don't want to get into, if bitcoin is good or bad, but it certainly is interesting from
+a technical point of view. The bitcoin involves many more interesting things than the proof of work, like authenticated datastructures (Merkle Tree), Trusted Timestamping, etc.
 
 But for the moment let us look into the proof of work. Bitcoin uses the proof of work to elect a leader. The leader announces the new
 block to the network. The proof of work guarantees that there is a random leader for every block and more importantely it makes sure
@@ -28,7 +28,7 @@ The fastest way to finde a nonce, so that the hash looks like the example is to 
 
 ## Comments-app
 
-In the comments-app the clients get random strings with a certain difficulty level from the backend. Then the client needs to find a nonce to get the hash with the the minimum leading zeroes. The provided random strings are only valid a certain time.
+In the comments-app the clients get random strings with a certain difficulty level from the backend. Then the client needs to find a nonce to get the hash with the minimum leading zeroes. The provided random strings are only valid a certain time.
 
 ---
 {: data-content="footnotes"}
