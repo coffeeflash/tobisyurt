@@ -20,7 +20,7 @@ I will make a little serie out o fit, if interested checkout following as well:
 
 * [Part 1, Comments App: Overview]({% post_url 2022-06-12-part-1,-comments-app:-overview %})
 * [Part 2, Comments App: Proof of Work]({% post_url 2022-06-23-part-2,-comments-app:-proof-of-work %})
-* to come soon: "comments-app -> reply-and-admin-feature"
+* [Part 3, Comments App: Admin and Reply]({% post_url 2022-07-2-part-3,-comments-app:-admin-and-reply %})
 
 ## Preview
 
