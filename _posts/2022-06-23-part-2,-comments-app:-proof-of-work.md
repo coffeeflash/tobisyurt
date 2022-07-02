@@ -23,12 +23,15 @@ The one who finds it gets a little reward. The **special** hash looks like:
 >00 00 90 34 8D 13 6E CC 33 AC A4 D1 22 6B 83 9A 2D 2C 46 20 10 65 C4 4E 15 D5 92 2D 87 B8 A3 21
 
 As one sees the leading zeroes are **special**... With bitcoin the block content gets hashed, with the actual nonce[^1], which is used.
-The fastest way to finde a nonce, so that the hash looks like the example is to simply increment a counter by 1 till you find it.
-
+The fastest way to finde a nonce, so that the hash looks like the example is to simply increment a counter by 1, then hash it with the
+desired cryptographic hash function. Next check if you have the right amount of leading zeros, otherwise repeat till you find it.
 
 ## Comments-app
 
 In the comments-app the clients get random strings with a certain difficulty level from the backend. Then the client needs to find a nonce to get the hash with the minimum leading zeroes. The provided random strings are only valid a certain time.
+
+In the use case of the comments app, we can not profit from parallelization as in traditional crypto-mining, considering web-browsers.
+That is why the hash quizes are rather simple, but still would be a hassle for attackers. Additionally i added some ip-blocking mechanism.
 
 ---
 {: data-content="footnotes"}

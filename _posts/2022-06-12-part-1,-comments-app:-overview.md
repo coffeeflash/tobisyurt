@@ -1,6 +1,6 @@
 ---
 layout: post
-category: [homelab, Spring Boot, HashCash, Blog, docker, security]
+category: [homelab, Spring Boot, HashCash, Blog, docker, security, comments]
 custom_js: comments
 ---
 
