@@ -108,11 +108,17 @@ img {
   border-radius: 5px;
 }
 
+.user{
+  margin-right: 6%;
+}
+
 .admin {
   color: #FF4500;
-  margin-left: 2rem;
+  margin-left: 6%;
 }
 
 #logo{
-  width: 140px;
+  max-width: 25%;
+  min-width: 100px;
 }
+

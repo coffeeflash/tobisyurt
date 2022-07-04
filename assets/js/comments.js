@@ -14,6 +14,8 @@ function setUp(){
     success: function(comments){
       $('#comment-section').empty().append(
         '<h2>Comment - Section</h2>'+
+        '<p>No subscription to any service needed! Instead your device has to solve '+
+        'some hash quizes to successfully submit a comment.</p>'+
         '<div class="comments"></div>'+
         '<div id="addComment">'+
         '  <button type="button" onclick="addComment()"> Add a comment </button>'+
@@ -23,7 +25,7 @@ function setUp(){
       $('.comments').empty()
       comments.forEach(comment => {
         $('.comments').append(
-          '<div class="emphasize"><h3 style="margin: 0;">' + comment.user +
+          '<div class="emphasize user"><h3 style="margin: 0;">' + comment.user +
             '<span style="color:gray;font-size:0.8rem;"> (' + new Date(comment.date).toLocaleString() + ')</span>'+
           '</h3>'+
           '<p style="margin:0;">' + comment.comment + '</p></div>'
@@ -90,17 +92,16 @@ function addComment(){
   $('#addComment').css("opacity", 0)
   $('#addComment').empty().append(
     '<h1>Add your comment:</h1>'+
-      '<p>No subscription to any service needed! Instead your device has to solve '+
-      'some hash quizes to successfully submit a comment.</p>'+
       '<p style="color:rgb(128,128,128);" id="loading"></p>'+
     '<form onsubmit="sendComment()"'+
       '<label for="name">Name:</label><br>'+
-      '<input id="name" name="name" placeholder="Your name"><br>'+
+      '<input id="name" style="width: 100%; max-width: 200px;" name="name" placeholder="Your name"><br>'+
       '<label for="text-comment">Comment:</label><br>'+
       '<textarea id="text-comment" name="text-comment" placeholder="Write something..."'+
-      ' style="width: 100%;height: 6rem">'+
+      ' style="width: 100%;min-height: 6rem";>'+
       '</textarea><br><br>'+
       '<input id="btn-submit" type="submit" value="Submit">'+
+      '<button type="button" style="margin-left: 1rem;" onclick="cancelReply()">Cancel</button>'+
       '<p style="color:red;opacity:0;" id="err"></p>'+
     '</form>'
   )
@@ -111,6 +112,14 @@ function addComment(){
   $('form').submit(function(event){
     event.preventDefault()
   })
+}
+
+async function cancelReply(){
+  $('#addComment').animate({opacity: 0}, 500 )
+  await delay(500)
+  $('#addComment').empty().append(
+    '<button type="button" onclick="addComment()"> Add a comment </button>')
+    .animate({opacity: 1}, 500 )
 }
 
 async function showError(errorText){
