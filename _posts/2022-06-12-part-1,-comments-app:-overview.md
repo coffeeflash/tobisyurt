@@ -20,7 +20,9 @@ I will make a little serie out o fit, if interested checkout following as well:
 
 * [Part 1, Comments App: Overview]({% post_url 2022-06-12-part-1,-comments-app:-overview %})
 * [Part 2, Comments App: Proof of Work]({% post_url 2022-06-23-part-2,-comments-app:-proof-of-work %})
-* [Part 3, Comments App: Admin and Reply]({% post_url 2022-07-2-part-3,-comments-app:-admin-and-reply %})
+* [Part 3, Comments App: Admin and Reply]({% post_url 2022-07-04-part-3,-comments-app:-admin-and-reply %})
+
+I try to summarize the general thoughts. Let me know in the comments down below, if more details are desired.
 
 ## Preview
 
@@ -32,6 +34,8 @@ security reasons I implemented some protection in form of hash quizes (similar t
 and simple ip blocking on certain condtions. More on that later ...
 
 You can get the latest image from docker-hub: [https://hub.docker.com/r/toubivankenoubi/comments](https://hub.docker.com/r/toubivankenoubi/comments)
+
+Everything is open-source and I invite everybody to contribute: [https://github.com/coffeeflash/Comments](hhttps://github.com/coffeeflash/Comments)
 
 Here a little preview, but of course I invite you to comment this very blog post down below and test it yourself.
 
@@ -57,7 +61,16 @@ First ideas to cover these requirements:
 2. I am used to building spring boot, which is supporting this requirement. For an easy deploy, I will provide up to date docker images on a registry.
 3. Public api endpoint `/api/comments`.
 4. That's the point, where it gets interesting:
-   1. DOS: Ip blocking after a certain burst of requests (Might be unfair for users, which access the website over the same ip-address). Let me konow if you have a better idea.
+   1. DOS: Ip blocking after a certain burst of requests (Might be unfair for users, which access the website over the same ip-address). Let me konow if you have a better idIP_BLOCK_TIME: 900
+  QUIZ_COUNT: 5
+  QUIZ_VALIDITY_SECONDS: 120
+  QUIZ_COMPLEXITY: 2
+  ADMIN_NAME: the_bloggers_name
+  SPRING_DATA_MONGODB_HOST: mongo
+  SPRING_DATA_MONGODB_DATABASE: comments
+  SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE: admin
+  SPRING_DATA_MONGODB_USERNAME: root
+  SPRING_DATA_MONGODB_PASSWORD: pleaseChangeMeea.
    2. DDOS (and DOS): to post a comment, one has to solve a hash puzzle, which needs a couple of seconds to solve (depends on the client device, which could also be a little unfair...).
    3. Covered by Spring Boot and proper implementation...
 
@@ -116,7 +129,9 @@ whereas `ADMIN_NAME` is just the blogger's name, which can be shown with the rep
 
 ## Further Improvements
 
-* reply function, should appear underneath a comment. Only reply on comment, not further nesting...
+* ~~reply function, should appear underneath a comment. Only reply on comment as an admin / blogger, not further nesting...~~
+ --> implemented
+* ~~administrator interface (needed for reply function)~~ --> implemented
 * ~~fine tune quiz complexity (bit-wise instead byte-wise)~~ --> solved with multiple quizes.
 
 
