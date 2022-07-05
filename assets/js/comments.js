@@ -22,7 +22,7 @@ function setUp(){
         '</div>'
       )
 
-      $('.comments').empty()
+      $('.comments').empty().css("opacity", 0)
       comments.forEach(comment => {
         $('.comments').append(
           '<div class="emphasize user"><h3 style="margin: 0;">' + comment.user +
@@ -38,6 +38,7 @@ function setUp(){
         }
 
       })
+      $('.comments').animate({opacity: 1}, 1000 )
     },
     error: function(){ console.log("upsss.....");}
   })
@@ -106,7 +107,6 @@ function addComment(){
     '</form>'
   )
   $('#addComment').animate({opacity: 1}, 1000 )
-
   scrollDown()
 
   $('form').submit(function(event){
@@ -114,12 +114,12 @@ function addComment(){
   })
 }
 
-async function cancelReply(){
-  $('#addComment').animate({opacity: 0}, 500 )
-  await delay(500)
-  $('#addComment').empty().append(
-    '<button type="button" onclick="addComment()"> Add a comment </button>')
-    .animate({opacity: 1}, 500 )
+function cancelReply(){
+  $('#addComment').slideUp(500, function (){
+      $('#addComment').empty().append(
+      '<button type="button" onclick="addComment()"> Add a comment </button>')
+      .fadeIn()
+  })
 }
 
 async function showError(errorText){
