@@ -36,7 +36,7 @@ degree.
 
 ### Preview
 
-Nice GIF
+[![Comments App Admin Interface](/assets/images/admin-comments.GIF)](/assets/images/admin-comments.GIF)
 
 ### Vue
 
