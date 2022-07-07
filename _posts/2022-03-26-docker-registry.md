@@ -81,14 +81,16 @@ services:
 
 ## Registry access for watchtower
 
-I use watchtower to label some container and get updated as soon as there is a new
-image push. But for that to work with private registries you have to get the
+I'am using watchtower to get my containers updated as soon as there is a new
+image. For this the containers need to be labeled accordingly
+(label name: `com.centurylinklabs.watchtower.enable`).
+But for that to work with private registries you have to get the
 credentials inside your container. Following my way doing it:
 
 * make a login in the registry on whatever environment you like with:
   `docker login yourPrivateRegistry`
 * Then copy the generated `.docker/config.json` into a docker volume of your choice.
-If you have logged in more than one private registry, clean the config.json accordingly.
+If you are logged-in in more than one private registry, clean the config.json first.
 * Then link the volume to watchtower.
 
 My docker-compose file for this (Caution, I also introduced the environment variable

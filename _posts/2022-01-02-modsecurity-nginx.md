@@ -1,12 +1,12 @@
 ---
 layout: post
-category: [homelab,security,FreeBSD]
+category: [homelab,security,FreeBSD,Grafna]
 custom_js: comments
 ---
 
-At work i had the the task to prepare a low cost production environment for a project in Kenya. It also required a WAF (Web Application Firewall), just as a precaution and to be able to react as fast as possible to the newest vulnerabilities in our technology stack. We decided to go for mod_security 2 on a classic Apache reverse proxy.
+At work I had the the task to prepare a low cost production environment for a project in Kenya. It also required a WAF (Web Application Firewall), just as a precaution and to be able to react as fast as possible to the newest vulnerabilities in our technology stack. We decided to go for mod_security 2 on a classic Apache reverse proxy.
 
-This got me motivated to secure my public websites served from my homelab. In general, i think WAF's are a bit overrated and especially overpriced, but in certain scenarios it makes a lot of sense to install an open source solution. In my opinion it makes sense, if:
+This got me motivated to secure my public websites served from my homelab. In general, I think WAF's are overrated and especially overpriced, but in certain scenarios it makes a lot of sense to install an open source solution. In my opinion it makes sense, if:
 
 1. For whatever reason the web app has a slow release cycle and is hard to update fast (e.g. regulation jungle)
 2. You serve apps, where you have limited abilities to change something (closed source, developed externally)
@@ -33,7 +33,7 @@ I just summarize the steps necessary, because it can be different depending on t
 
 # Grafana Dashboard
 
-I like logs, but I love visualizations! I set up a grafana instance to monitor my reverse proxy's access logs before and added a new dashboard for the modsecurity messages in the error log. Maybe there will follow another post on grafana related stuff.
+I like logs, but I love visualizations! I set up a grafana instance to monitor my reverse proxy's access logs before and added a new dashboard for the modsecurity messages in the error log. Maybe there will follow another post on Grafana related stuff.
 
 But if you are interested in the dashboard itself, i shared it [here](https://grafana.com/grafana/dashboards/15495){:target="_blank"}.
 
