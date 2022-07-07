@@ -127,12 +127,17 @@ devices...
 `PRING_SECURITY_USER_NAME` and `SPRING_SECURITY_USER_PASSWORD` are for the http basic authentication,
 whereas `ADMIN_NAME` is just the blogger's name, which can be shown with the reply text.
 
+See also [Part 3, Comments App: Admin and Reply]({% post_url 2022-07-04-part-3,-comments-app:-admin-and-reply %}) for
+the values not discussed here, which are needed for the administration interface.
+
 ## Further Improvements
 
 * ~~reply function, should appear underneath a comment. Only reply on comment as an admin / blogger, not further nesting...~~
  --> implemented
 * ~~administrator interface (needed for reply function)~~ --> implemented
 * ~~fine tune quiz complexity (bit-wise instead byte-wise)~~ --> solved with multiple quizes.
+* allow other databases (mariadb, postgres eventually...)
+* provide easier integration possibilities in blogs.
 
 
 ---
