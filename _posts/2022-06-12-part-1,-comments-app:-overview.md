@@ -7,7 +7,7 @@ custom_js: comments
 [![Comments App Example Integration](/assets/images/logo.svg){: width="200" }](/assets/images/logo.svg)
 
 I started this blog with this nice Jekyll-Theme and wanted to host it myself rather than hosting it on github pages.
-But what I missed so far is a comments section. I initially searched for already implemented solutions and found following:
+But what I missed so far was a comments section. I initially searched for already implemented solutions and found following:
 
 * Paid comments services like Disqus[^1]
 * Some projects with comments over github-issues
@@ -21,6 +21,7 @@ I will make a little serie out o fit, if interested checkout following as well:
 * [Part 1, Comments App: Overview]({% post_url 2022-06-12-part-1,-comments-app:-overview %})
 * [Part 2, Comments App: Proof of Work]({% post_url 2022-06-23-part-2,-comments-app:-proof-of-work %})
 * [Part 3, Comments App: Admin and Reply]({% post_url 2022-07-04-part-3,-comments-app:-admin-and-reply %})
+* [Test the Comments App]({{ site.baseurl }}/test_comments_app)
 
 I try to summarize the general thoughts. Let me know in the comments down below, if more details are desired.
 
@@ -29,7 +30,8 @@ I try to summarize the general thoughts. Let me know in the comments down below,
 This app will provide an API and an exemplary integration to provide a comments section to a simple static website. I developed it
 for two jekyll blogs, but it is easily integrated in any blog.
 
-The cool thing about this app is, that users do not need to register to any services. They can just post comments. For
+The cool thing about this app is, that users do not need to register to any services. They can just post comments and they
+decide their selves how anonymous they want be by choosing their username. For
 security reasons I implemented some protection in form of hash quizes (similar to the proof of work concept with bitcoin)
 and simple ip blocking on certain condtions. More on that later ...
 
@@ -37,7 +39,8 @@ You can get the latest image from docker-hub: [https://hub.docker.com/r/toubivan
 
 Everything is open-source and I invite everybody to contribute: [https://github.com/coffeeflash/Comments](hhttps://github.com/coffeeflash/Comments)
 
-Here a little preview, but of course I invite you to comment this very blog post down below and test it yourself.
+Here a little preview, but of course I invite you to comment this very blog post down below and test it yourself. Or if
+you just want to write some nonsense to simply test it; [Test the Comments App]({{ site.baseurl }}/test_comments_app).
 
 [![Comments App Example Integration](/assets/images/comments-preview.GIF)](/assets/images/comments-preview.GIF)
 
@@ -72,7 +75,7 @@ First ideas to cover these requirements:
   SPRING_DATA_MONGODB_USERNAME: root
   SPRING_DATA_MONGODB_PASSWORD: pleaseChangeMeea.
    2. DDOS (and DOS): to post a comment, one has to solve a hash puzzle, which needs a couple of seconds to solve (depends on the client device, which could also be a little unfair...).
-   3. Covered by Spring Boot and proper implementation...
+   3. Covered by Spring Boot and (hopefully) proper implementation...
 
 ## Some Details
 
@@ -80,7 +83,8 @@ First ideas to cover these requirements:
 
 With this call a client (e.g. a blog post) gets comments. It needs two things to identify the comments.
 
-1. The `referer` needs to be declared in the request header (not default in Postamn, if one is testing the api...)
+1. ~~The `referer` needs to be declared in the request header (not default in Postamn, if one is testing the api...)~~
+--> removed, client provides the source only.
 2. The `source` as a request parameter. For example the title of a blog post.
 
 ### `GET /api/quiz`
@@ -96,7 +100,7 @@ The quiz gets stored in memory for a certain amount of time (e.g. 30 seconds), d
 
 The client provides following in his request-body:
 * quiz-id (aka storage key for the service to find it in the memory) and a solution (calculated nonce's)
-* identifier to match the comment to the blog-post. (referer [in header] + title of the blog post)
+* identifier to match the comment to the blog-post (url of the post).
 * a username and finally the comment itself.
 
 ### Configuration

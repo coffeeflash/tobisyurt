@@ -7,6 +7,7 @@ custom_js: comments
 This is a part of a series, see also:
 * [Part 1, Comments App: Overview]({% post_url 2022-06-12-part-1,-comments-app:-overview %})
 * [Part 3, Comments App: Admin and Reply]({% post_url 2022-07-04-part-3,-comments-app:-admin-and-reply %})
+* [Test the Comments App]({{ site.baseurl }}/test_comments_app)
 
 ## Proof of work
 

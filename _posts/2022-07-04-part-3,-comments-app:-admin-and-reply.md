@@ -7,6 +7,7 @@ custom_js: comments
 This is a continuation of an earlier post, see:
 * [comments-app, part 1]({% post_url 2022-06-12-part-1,-comments-app:-overview %}).
 * [comments-app, part 2]({% post_url 2022-06-23-part-2,-comments-app:-proof-of-work %}).
+* [Test the Comments App]({{ site.baseurl }}/test_comments_app)
 
 I try to summarize the general thoughts of the new features; replies and the administrator interface. Let me know in the comments
 down below, if more details are desired.
@@ -22,9 +23,8 @@ The reply is directly bound to a comment's id. And should also be editable.
 
 ## Admin
 
-As a result of above mentioned "admin only reply feature", an administrator interface is crucial. But how and with what technology?
-I quickly knew, that I would be the fastest with the lightweight js-framework vue, with which I was already familiar to a certain
-degree.
+As a result of the mentioned "admin only reply feature" above, an administrator interface is crucial. But how and with what technology?
+I quickly knew, that I would be the fastest with the lightweight js-framework vue, with which I was already familiar to a certain degree.
 
 ### Requirements
 
