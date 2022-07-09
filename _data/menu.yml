@@ -16,7 +16,7 @@ entries:
       show_more: true
       show_more_text: See more posts...
       show_more_url: homelab-archive.html
-  # 
+  #
   # - title: docker
   #   post_list:
   #     category: docker
@@ -45,6 +45,8 @@ entries:
     entries:
       - title: rss
         url: feed.xml
+      - title: future ideas
+        url: future_ideas
       - title: about
         url: about
       - title: github
