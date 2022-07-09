@@ -45,8 +45,8 @@ entries:
     entries:
       - title: rss
         url: feed.xml
-      - title: future ideas
-        url: future_ideas
+      - title: future topics
+        url: future_topics
       - title: about
         url: about
       - title: github
